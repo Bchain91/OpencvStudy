@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CannyEdgeDetector">
+      <UniqueIdentifier>{283e4604-30e1-48ee-b233-27e456a46da3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenCVAppGUI.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="OpenCVAppGUIDlg.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="canny.h">
+      <Filter>CannyEdgeDetector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenCVAppGUI.cpp">
@@ -43,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="canny.cpp">
+      <Filter>CannyEdgeDetector</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -92,7 +92,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
@@ -193,6 +193,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="canny.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="OpenCVAppGUI.h" />
     <ClInclude Include="OpenCVAppGUIDlg.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="canny.cpp" />
     <ClCompile Include="OpenCVAppGUI.cpp" />
     <ClCompile Include="OpenCVAppGUIDlg.cpp" />
     <ClCompile Include="pch.cpp">

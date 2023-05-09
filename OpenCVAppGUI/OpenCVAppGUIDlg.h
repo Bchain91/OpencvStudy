@@ -97,6 +97,7 @@ private:
 	static int CallInspCorrection(void* lpUserData);
 	static int CallInspSearchingContour(void* lpUserData);
 	static int CallInspMatching(void* lpUserData);
+	static int CallInspCanny(void* lpUserData);
 
 
 	int OnInspFindcontourSample();
@@ -109,6 +110,7 @@ private:
 	int OnInspMorpologyMultiObjects();
 	int OnInspHistoEqulization();
 	int OnInspCorrection();
+	int OnInspCanny();
 
 	int OnInspSearchingContour();
 

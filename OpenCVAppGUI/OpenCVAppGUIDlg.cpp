@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <ctime>
 #include <format>
+#include "canny.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -559,16 +560,7 @@ int COpenCVAppGUIDlg::OnAllocateBuffer(int cols, int rows)
 		_SourceImage.copyTo(_mMatBuff[eImgSrcColor]);
 		cvtColor(_SourceImage, _mMatBuff[eImgSrcGray], COLOR_BGR2GRAY);
 	}	
-	if (_DrawImage.type() == CV_8UC1)
-	{
-		cvtColor(_DrawImage, _mMatBuff[eImgDebugColor], COLOR_GRAY2BGR);
-		_SourceImage.copyTo(_mMatBuff[eImgDebugGray]);
-	}
-	else
-	{
-		_DrawImage.copyTo(_mMatBuff[eImgDebugColor]);
-		cvtColor(_DrawImage, _mMatBuff[eImgDebugGray], COLOR_BGR2GRAY);
-	}
+	
 
 	Mat vi = _mMatBuff[eImgSrcColor];
 
@@ -599,6 +591,8 @@ int COpenCVAppGUIDlg::UpdateInspList()
 	_mInsps.insert(make_pair("OnInspCorrection", COpenCVAppGUIDlg::CallInspCorrection));
 	_mInsps.insert(make_pair("OnInspSearchingContour", COpenCVAppGUIDlg::CallInspSearchingContour));
 	_mInsps.insert(make_pair("OnInspMatching", COpenCVAppGUIDlg::CallInspMatching));
+	_mInsps.insert(make_pair("OnInspCanny", COpenCVAppGUIDlg::CallInspCanny));
+
 
 
 	return 1;
@@ -746,6 +740,11 @@ int COpenCVAppGUIDlg::CallInspMatching(void* lpUserData)
 {
 	COpenCVAppGUIDlg* pDlg = reinterpret_cast<COpenCVAppGUIDlg*>(lpUserData);
 	return pDlg->OnInspMatching();
+}
+int COpenCVAppGUIDlg::CallInspCanny(void* lpUserData)
+{
+	COpenCVAppGUIDlg* pDlg = reinterpret_cast<COpenCVAppGUIDlg*>(lpUserData);
+	return pDlg->OnInspCanny();
 }
 int COpenCVAppGUIDlg::OnInspFindcontourSample()
 {
@@ -974,7 +973,8 @@ void COpenCVAppGUIDlg::OnBnClickedBtnInspectionCv()
 	//auto ret = f(this); // int COpenCVAppGUIDlg::OnInspFindShapes()
 
 	//auto f = _mInsps["OnInspFindShape"];
-	auto f = _mInsps["OnInspMatching"];
+	//auto f = _mInsps["OnInspMatching"];
+	auto f = _mInsps["OnInspCanny"];
 	if (f == nullptr) return;
 	auto ret = f(this); // int COpenCVAppGUIDlg::OnInspFindShapes()
 
@@ -1735,6 +1735,18 @@ int COpenCVAppGUIDlg::OnInspCorrection()
 	_bShowDebug = _bShowResult = true;
 
 	Invalidate(FALSE);
+	return 0;
+}
+
+int COpenCVAppGUIDlg::OnInspCanny()
+{
+	std::string readLocation = "images/Sukuna.jpg";
+	std::string writeLocation = "images/SukunaCanny.jpg";
+	double lowerThreshold = 0.03;
+	double higherThreshold = 0.1;
+
+	cannyEdgeDetection(readLocation, writeLocation, lowerThreshold, higherThreshold);
+
 	return 0;
 }
 
